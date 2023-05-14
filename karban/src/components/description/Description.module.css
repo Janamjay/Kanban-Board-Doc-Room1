@@ -21,7 +21,7 @@
     border-radius: 3px;
     padding: 8px 12px;
     border: none;
-    width: 70%;
+    width: 85%;
     text-align: left;
     margin-top: 5px;
 }
@@ -67,7 +67,7 @@
 .inputs{
    
     height: 270px;
-    width: 600px;
+    width: 500px;
 }
 
 .inputs input{
@@ -76,4 +76,30 @@
 }
 .inputs input:focus{
     outline-color: lightskyblue;
+}
+
+.save{
+  background-color: #0984e3;
+  color: white;
+  height: 38px;
+  width: 95px;
+  border-radius: 3px;
+  border: none;
+  margin-right: 9px;
+  font-size: 15px;
+}
+.cancel{
+  background-color: white;
+  color: black;
+  height: 38px;
+  width: 95px;
+  border-radius: 3px;
+  border: none;
+  font-size: 15px;
+}
+.cancel:hover{
+  background-color: #dcdde1;
+}
+.buttonsSave{
+  margin-top: 5px;
 }
