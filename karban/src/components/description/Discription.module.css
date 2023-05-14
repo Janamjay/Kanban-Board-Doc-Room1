@@ -11,6 +11,7 @@
     position: relative;
     left: 2%;
     font-size: 18px;
+    top: 15px;
 }
 .button{
     color: #172B4D;
@@ -22,6 +23,7 @@
     border: none;
     width: 70%;
     text-align: left;
+    margin-top: 5px;
 }
 .button:hover{
     background-color: #dcdde1;
