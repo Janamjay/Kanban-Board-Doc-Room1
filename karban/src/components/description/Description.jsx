@@ -54,11 +54,11 @@ function Description() {
         {editing ? (
           <div className={style.inputs} ref={inputRef}>
             <ReactQuill value={input} onChange={setInput} />
-            <div>
-              <button onClick={handleSave} className={style.button}>
+            <div className={style.buttonsSave}>
+              <button onClick={handleSave} className={style.save}>
                 Save
               </button>
-              <button onClick={handleCancel} className={style.button}>
+              <button onClick={handleCancel} className={style.cancel}>
                 Cancel
               </button>
             </div>

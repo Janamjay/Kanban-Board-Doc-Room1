@@ -1,5 +1,5 @@
 .windows {
-  height: 600px;
+  min-height: 600px;
   width: 600px;
   /* background-color: #091E420F; */
   margin-left: 20%;
