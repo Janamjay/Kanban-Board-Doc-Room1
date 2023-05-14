@@ -36,7 +36,7 @@ setComment(true)
         </div>
         <div className={style.comment}>
             <span className={style.justifyImage}>
-            <img className={style.userImage} alt="user" src=" https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" width="40px" height="40px"/>
+            <img className={style.userImage} src=" https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png" alt="user" width="50px" height="50px"/>
             </span>
             <span className={style.commentBtn}>
               {comment?
