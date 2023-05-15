@@ -6,17 +6,32 @@ import edit from "./editable.module.css";
 const Editable = (props) => {
   const [showEdit, setShowEdit] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  function handleSubmit(e){
+    e.preventDefault()
+    if (props.onSubmit) {
+      props.onSubmit(inputValue);
+    } 
+    else if(props.handleAddTask){
+      props.handleAddTask(inputValue)
+    }
+    setShowEdit(false);
+    setInputValue("");
+  }
+
+  
   return (
     <div className={edit.main_edit}>
       {showEdit ? (
         <form
           className={`${edit.input_edit} ${props.editClass || ""}`}
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (props.onSubmit) props.onSubmit(inputValue);
-            setShowEdit(false);
-            setInputValue("");
-          }}
+          onSubmit={(e)=>handleSubmit(e)}
+          // onSubmit={(e) => {
+          //   e.preventDefault();
+          //   if (props.onSubmit) props.onSubmit(inputValue);
+          //   setShowEdit(false);
+          //   setInputValue("");
+          // }}
         >
           <input
             autoFocus

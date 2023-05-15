@@ -47,7 +47,7 @@
   width: 14px;
 }
 .dropdown{
-    background-color: transparent;
+    /* background-color: transparent; */
     width: 100px;
     padding: 10px;
     border-radius: 5px;
