@@ -6,7 +6,7 @@ import Editable from "../editable/Editable";
 import Dropdown from "../dropdown/Dropdown";
 
 import {useDispatch, useSelector} from 'react-redux'
-import {addTask} from '../../redux/tasksSlice'
+import {addTask, deleteTask} from '../../redux/tasksSlice'
 
 import {v4 as uuid} from 'uuid'
 
@@ -23,9 +23,12 @@ const Board = (props) => {
     // e.preventDefault()
     const newCard={cardID: uuid(), listID: props.board.listID, cardTitle: inputValue, createdAt: new Date().toJSON(), labels: [{text: "urgent", color: "red"}]}
     dispatch(addTask(newCard))
-
-
   }
+
+  function handleDeleteTask(cardID){
+    dispatch(deleteTask(cardID))
+  }
+
   return (
     <div className={board.main_board}>
       <div className={board.board_top}>
@@ -46,7 +49,7 @@ const Board = (props) => {
       </div>
       <div className={`${board.board_cards}  ${board.custom_scroll}`}>
         {(allTasks?.filter(task=>task.listID==props.board.listID)).map((item) => (
-          <Card key={item.cardID} card={item}/>
+          <Card key={item.cardID} card={item} handleDeleteTask={handleDeleteTask}/>
         ))}
         <Editable text="Add a card" placeholder="Enter a title for this card...." handleAddTask={handleAddTask} />
       </div>
