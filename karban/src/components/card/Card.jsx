@@ -9,13 +9,21 @@ import Chip from "../tags/Chip";
 
 import { Link } from "react-router-dom";
 
+import {useDispatch} from 'react-redux'
+import {deleteTask} from '../../redux/tasksSlice'
+
 const Card = (props) => {
+  const dispatch=useDispatch()
   const [showDropdown, setShowDropdown] = useState(false);
   function handleClick() {
     setShowDropdown(!showDropdown);
   }
+
+  function handleCardDelete(){
+    dispatch(deleteTask(props.card.cardID))
+  }
   return (
-    <Link to={props.card.id}>
+    <Link style={{textDecoration:"none"}} to={props.card.cardID}>
       <div className={card.card_main}>
         <div className={card.card_top}>
           <div className={card.card_labels}>
@@ -28,17 +36,17 @@ const Card = (props) => {
             {showDropdown && (
               <Dropdown>
                 <div className={card.dropdown}>
-                  <p>Delete card</p>
+                  <p><span onClick={handleCardDelete}>Delete card</span></p>
                 </div>
               </Dropdown>
             )}
           </div>
         </div>
-        <div className={card.card_title}>{props.card?.title}</div>
+        <div className={card.card_title}>{props.card?.cardTitle}</div>
         <div className={card.card_footer}>
-          {props.card?.date && (
+          {props.card?.createdAt && (
             <p>
-              <AiOutlineClockCircle /> {props.card?.date}
+              <AiOutlineClockCircle /> {props.card?.createdAt}
             </p>
           )}
           <p>
