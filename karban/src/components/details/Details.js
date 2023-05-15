@@ -20,29 +20,32 @@ function Details() {
     <>
       {crosses ? (
         <div className={style.windows}>
-        <div className={style.textAreaSection}>
-          <span className={style.laptop}>
-              <Icons icon={<FaLaptop/>}/>
-  
-          </span>
-          <span className={style.textArea}>
-  <input type='text' value={input} onChange={handleInput} style={{width:"90%",border:"none",height:"30px"}}/>
-  <p className={style.p}>in list {input}</p>
-          </span>
-          <span className={style.cross}>
-          <Icons icon={<RxCross2/>}/>
-  
-          </span>
+          <div className={style.textAreaSection}>
+            <span className={style.laptop}>
+              <Icons icon={<FaLaptop />} />
+            </span>
+            <span className={style.textArea}>
+              <input
+                type="text"
+                value={input}
+                onChange={handleInput}
+                style={{ width: "90%", border: "none", height: "30px" }}
+              />
+              <p className={style.p}>in list {input}</p>
+            </span>
+            <span className={style.cross}>
+              <Icons icon={<RxCross2 />} />
+            </span>
+          </div>
+          <div>
+            <Description />
+            <Activity />
+          </div>
         </div>
-        <div>
-          <Description/>
-          <Activity/>
-        </div>
-      </div>
       ) : (
         <></>
       )}
     </>
   );
-      }
+}
 export default Details;
