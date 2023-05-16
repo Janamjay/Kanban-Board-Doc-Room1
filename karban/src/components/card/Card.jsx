@@ -4,9 +4,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { FiCheckSquare } from "react-icons/fi";
 import Dropdown from "../dropdown/Dropdown";
 import cardStyles from "./card.module.css";
-
 import { Link } from "react-router-dom";
-
 
 const Card = ({card, handleDeleteTask}) => {
 

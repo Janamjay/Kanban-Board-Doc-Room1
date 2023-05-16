@@ -40,7 +40,7 @@ function Layout() {
                 />
               ))}
               <Editable
-                text="Add another list"
+                text="Add list"
                 placeholder="Enter list title...."
                 onSubmit={(value) => handleAddList(value)}
               />

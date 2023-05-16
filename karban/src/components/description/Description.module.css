@@ -10,9 +10,6 @@
     font-size: 18px;
     top: 15px;
 }
-.button{
-  }
-  
   .button {
     color: #172B4D;
     background-color: #091E420F;
@@ -23,9 +20,8 @@
     border: none;
     width: 85%;
     text-align: left;
-    margin-top: 5px;
+    margin-top: 1rem;
 }
-  
   
   .button:hover {
     background-color: #dcdde1;
@@ -54,6 +50,7 @@
   
   .savedInput {
     cursor: pointer;
+    margin-top: 1rem;
   }
 .button:hover{
     background-color: #dcdde1;
@@ -64,9 +61,8 @@
     font-weight: 400;
     margin-top: 12px;
 }
-.inputs{
-   
-    height: 270px;
+.inputs{ 
+    height: fit-content;
     width: 500px;
 }
 

@@ -53,7 +53,7 @@ function Description() {
         </div>
         {editing ? (
           <div className={style.inputs} ref={inputRef}>
-            <ReactQuill value={input} onChange={setInput} />
+            <ReactQuill style={{marginTop:"1rem"}} value={input} onChange={setInput} />
             <div className={style.buttonsSave}>
               <button onClick={handleSave} className={style.save}>
                 Save
