@@ -1,14 +1,18 @@
 import React from "react";
-import style from "./Home.module.css";
-import BoardBar from "../containers/navbars/BoardBar";
-import Board from "../containers/board/Board";
-import Editable from "../components/editable/Editable";
+import style from "./Layout.module.css";
+// import Details from "../details/Details";
+import Navbar from "../../containers/navbars/BoardBar";
+import Board from "../../components/board/Board";
+import Editable from "../../components/editable/Editable";
+
 import { Outlet } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
-import { addList, deleteList } from "../redux/listsSlice";
+import { addList, deleteList } from "../../redux/listsSlice";
+
 import { v4 as uuid } from "uuid";
 
-function Home() {
+function Layout() {
   const dispatch = useDispatch();
   const listArr = useSelector((state) => state.lists.value);
 
@@ -25,7 +29,7 @@ function Home() {
     <>
       <div className={style.mainLayout}>
         <div className={style.image}>
-          <BoardBar />
+          <Navbar />
           <div className={style.outer_board}>
             <div className={style.inner_board}>
               {listArr?.map((item) => (
@@ -36,7 +40,7 @@ function Home() {
                 />
               ))}
               <Editable
-                text="Add list"
+                text="Add another list"
                 placeholder="Enter list title...."
                 onSubmit={(value) => handleAddList(value)}
               />
@@ -49,4 +53,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Layout;

@@ -59,7 +59,7 @@ function Activity() {
               </span>
               <span className={style.activityText}>
                 <p>Neha Rajbhar</p>
-                <p>Time and Dtae</p>
+                <p>Time and Date</p>
               </span>
             </div>
           </>

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import style from "./Details.module.css";
 import { FaLaptop } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
-import Icons from "../icons/Icons";
-import Activity from "../activity/Activity";
-import Description from "../../containers/description/Description"
+import Icons from "../../components/icons/Icons";
+import Activity from "../../components/activity/Activity";
+import Description from "../../components/description/Description";
+
+
 function Details() {
   const [input, setInput] = useState("hii");
   const [crosses, setCross] = useState(true);
