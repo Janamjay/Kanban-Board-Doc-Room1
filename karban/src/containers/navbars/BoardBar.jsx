@@ -1,8 +1,8 @@
 import React from 'react'
-import style from "./Navbar.module.css"
+import style from "./BoardBar.module.css"
 import {AiOutlineStar} from "react-icons/ai"
 import {AiOutlineUserAdd} from "react-icons/ai"
-function Navbar() {
+function BoardBar() {
   return (
     <div className={style.navbar}>
       <div className={style.name}>
@@ -17,4 +17,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default BoardBar;
