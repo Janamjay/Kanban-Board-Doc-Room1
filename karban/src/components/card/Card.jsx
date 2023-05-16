@@ -3,42 +3,46 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { FiCheckSquare } from "react-icons/fi";
 import Dropdown from "../dropdown/Dropdown";
-import card from "./card.module.css";
+import cardStyles from "./card.module.css";
 
 import Chip from "../tags/Chip";
 
 import { Link } from "react-router-dom";
 
-const Card = (props) => {
+
+const Card = ({card, handleDeleteTask}) => {
+
   const [showDropdown, setShowDropdown] = useState(false);
   function handleClick() {
     setShowDropdown(!showDropdown);
   }
+
+  
   return (
-    <Link to={props.card.id}>
-      <div className={card.card_main}>
-        <div className={card.card_top}>
-          <div className={card.card_labels}>
-            {props.card?.labels?.map((item, index) => {
+    <Link style={{textDecoration:"none"}} to={card.cardID}>
+      <div className={cardStyles.card_main}>
+        <div className={cardStyles.card_top}>
+          <div className={cardStyles.card_labels}>
+            {card?.labels?.map((item, index) => {
               return <Chip key={index} text={item.text} color={item.color} />;
             })}
           </div>
-          <div className={card.top_more}>
+          <div className={cardStyles.top_more}>
             <FiMoreHorizontal onClick={handleClick} />
             {showDropdown && (
               <Dropdown>
-                <div className={card.dropdown}>
-                  <p>Delete card</p>
+                <div className={cardStyles.dropdown}>
+                  <p><span onClick={()=>handleDeleteTask(card.cardID)}>Delete card</span></p>
                 </div>
               </Dropdown>
             )}
           </div>
         </div>
-        <div className={card.card_title}>{props.card?.title}</div>
-        <div className={card.card_footer}>
-          {props.card?.date && (
+        <div className={cardStyles.card_title}>{card?.cardTitle}</div>
+        <div className={cardStyles.card_footer}>
+          {card?.createdAt && (
             <p>
-              <AiOutlineClockCircle /> {props.card?.date}
+              <AiOutlineClockCircle /> {card?.createdAt}
             </p>
           )}
           <p>
