@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React from "react";
 import style from "./Home.module.css";
 import BoardBar from "../containers/navbars/BoardBar";
 import Board from "../containers/board/Board";

@@ -5,21 +5,18 @@ import { RxCross2 } from "react-icons/rx";
 import Icons from "../../components/icons/Icons";
 import Activity from "../../components/activity/Activity";
 import Description from "../../components/description/Description";
+import { useNavigate } from "react-router";
 
 
 function Details() {
   const [input, setInput] = useState("hii");
-  const [crosses, setCross] = useState(true);
+  const navigate = useNavigate();
   function handleInput(e) {
     setInput(e.target.value);
   }
 
-  function handleCross() {
-    setCross();
-  }
+
   return (
-    <>
-      {crosses ? (
         <div className={style.windows}>
           <div className={style.textAreaSection}>
             <span className={style.laptop}>
@@ -35,7 +32,7 @@ function Details() {
               <p className={style.p}>in list {input}</p>
             </span>
             <span className={style.cross}>
-              <Icons icon={<RxCross2 />} />
+              <Icons  icon={<RxCross2  onClick={()=>navigate("/")}/>} />
             </span>
           </div>
           <div>
@@ -43,10 +40,6 @@ function Details() {
             <Activity />
           </div>
         </div>
-      ) : (
-        <></>
-      )}
-    </>
   );
 }
 export default Details;

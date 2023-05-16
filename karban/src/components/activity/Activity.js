@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import style from "./Activity.module.css";
 import Icons from "../icons/Icons";
 import { RxActivityLog } from "react-icons/rx";
@@ -80,7 +80,7 @@ function Activity() {
         <span className={style.commentBtn}>
           {editing ? (
             <>
-              <span className={style.textEditor}>
+              <span className={style.textEditor} ref={inputRef}>
                 <ReactQuill
                   style={{ marginTop: "1rem", backgroundColor: "white" }}
                   value={input}

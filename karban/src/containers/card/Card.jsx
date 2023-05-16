@@ -15,7 +15,7 @@ const Card = ({card, handleDeleteTask}) => {
 
   
   return (
-    <Link style={{textDecoration:"none"}} to={card.cardID}>
+    <Link style={{textDecoration:"none"}} to={`/${card.cardID}`}>
       <div className={cardStyles.card_main}>
         <div className={cardStyles.card_top}>
           <div className={cardStyles.card_title}>{card?.cardTitle}</div>
