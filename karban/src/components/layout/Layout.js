@@ -1,12 +1,15 @@
 import React from "react";
 import style from "./Layout.module.css";
+// import Details from "../details/Details";
 import Navbar from "../navbar/Navbar";
-import Sidebar from "../navbar/Sidebar";
 import Board from "../board/Board";
 import Editable from "../editable/Editable";
+
 import { Outlet } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addList, deleteList } from "../../redux/listsSlice";
+
 import { v4 as uuid } from "uuid";
 
 function Layout() {
@@ -25,9 +28,6 @@ function Layout() {
   return (
     <>
       <div className={style.mainLayout}>
-      <div className={style.sidebar}>
-        <Sidebar />
-      </div>
         <div className={style.image}>
           <Navbar />
           <div className={style.outer_board}>
