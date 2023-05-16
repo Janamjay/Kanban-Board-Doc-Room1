@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import style from "./Description.module.css";
-import Icons from "../icons/Icons";
+import Icons from "../../components/icons/Icons";
 import { BsJustifyLeft } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import ReactQuill from "react-quill";
