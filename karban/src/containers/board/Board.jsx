@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import board from "./board.module.css";
 import { FiMoreHorizontal } from "react-icons/fi";
 import Card from "../card/Card";
-import Editable from "../editable/Editable";
-import Dropdown from "../dropdown/Dropdown";
+import Editable from "../../components/editable/Editable";
+import Dropdown from "../../components/dropdown/Dropdown";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, deleteTask } from "../../redux/tasksSlice";

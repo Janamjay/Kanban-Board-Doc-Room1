@@ -1,18 +1,14 @@
 import React from "react";
-import style from "./Layout.module.css";
-// import Details from "../details/Details";
-import Navbar from "../navbar/Navbar";
-import Board from "../board/Board";
-import Editable from "../editable/Editable";
-
+import style from "./Home.module.css";
+import Navbar from "../containers/navbar/Navbar";
+import Board from "../containers/board/Board";
+import Editable from "../components/editable/Editable";
 import { Outlet } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
-import { addList, deleteList } from "../../redux/listsSlice";
-
+import { addList, deleteList } from "../redux/listsSlice";
 import { v4 as uuid } from "uuid";
 
-function Layout() {
+function Home() {
   const dispatch = useDispatch();
   const listArr = useSelector((state) => state.lists.value);
 
@@ -53,4 +49,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default Home;

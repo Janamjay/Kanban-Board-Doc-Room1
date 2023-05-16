@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { FiCheckSquare } from "react-icons/fi";
-import Dropdown from "../dropdown/Dropdown";
+import Dropdown from "../../components/dropdown/Dropdown";
 import cardStyles from "./card.module.css";
 
 import { Link } from "react-router-dom";
