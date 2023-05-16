@@ -7,25 +7,27 @@ const Editable = (props) => {
   const [showEdit, setShowEdit] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  function handleSubmit(e){
-    e.preventDefault()
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (inputValue.trim() === "") {
+      alert("Please enter some text.");
+      return;
+    }
     if (props.onSubmit) {
       props.onSubmit(inputValue);
-    } 
-    else if(props.handleAddTask){
-      props.handleAddTask(inputValue)
+    } else if (props.handleAddTask) {
+      props.handleAddTask(inputValue);
     }
     setShowEdit(false);
     setInputValue("");
   }
 
-  
   return (
     <div className={edit.main_edit}>
       {showEdit ? (
         <form
           className={`${edit.input_edit} ${props.editClass || ""}`}
-          onSubmit={(e)=>handleSubmit(e)}
+          onSubmit={(e) => handleSubmit(e)}
           // onSubmit={(e) => {
           //   e.preventDefault();
           //   if (props.onSubmit) props.onSubmit(inputValue);

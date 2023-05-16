@@ -13,7 +13,7 @@ export const tasksSlice=createSlice({
             state.value.push(action.payload)
         }, 
         deleteTask: (state, action)=>{
-            state.value=state.value.filter(task=>task.cardID!=action.payload)
+            state.value=state.value.filter(task=>task.cardID!==action.payload)
         }
     }
 

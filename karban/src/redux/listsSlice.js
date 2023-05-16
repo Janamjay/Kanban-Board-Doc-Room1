@@ -15,7 +15,7 @@ export const listsSlice=createSlice({
         },
         deleteList: (state, action) =>{
             // console.log(action.payload)
-            state.value=state.value.filter(item=>item.listID!=action.payload)
+            state.value=state.value.filter(item=>item.listID!==action.payload)
         },
         
     }

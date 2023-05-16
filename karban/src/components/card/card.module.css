@@ -17,11 +17,11 @@
 .top_more svg {
   cursor: pointer;
 }
-.card_labels {
+/* .card_labels {
   display: flex;
   flex: 1;
   gap: 10px;
-}
+} */
 .card_top svg {
   opacity: 0;
   transition: 200ms;
@@ -30,7 +30,11 @@
   opacity: 1;
 }
 .card_title {
+  display: flex;
+  flex: 1;
+  gap: 10px;
   font-weight: 700;
+  color: black;
 }
 .card_footer {
   display: flex;
@@ -41,6 +45,7 @@
   display: flex;
   gap: 5px;
   align-items: center;
+  color: grey;
 }
 .card_footer svg {
   height: 14px;

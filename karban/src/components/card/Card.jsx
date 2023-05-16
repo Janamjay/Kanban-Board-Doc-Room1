@@ -5,8 +5,6 @@ import { FiCheckSquare } from "react-icons/fi";
 import Dropdown from "../dropdown/Dropdown";
 import cardStyles from "./card.module.css";
 
-import Chip from "../tags/Chip";
-
 import { Link } from "react-router-dom";
 
 
@@ -22,11 +20,7 @@ const Card = ({card, handleDeleteTask}) => {
     <Link style={{textDecoration:"none"}} to={card.cardID}>
       <div className={cardStyles.card_main}>
         <div className={cardStyles.card_top}>
-          <div className={cardStyles.card_labels}>
-            {card?.labels?.map((item, index) => {
-              return <Chip key={index} text={item.text} color={item.color} />;
-            })}
-          </div>
+          <div className={cardStyles.card_title}>{card?.cardTitle}</div>
           <div className={cardStyles.top_more}>
             <FiMoreHorizontal onClick={handleClick} />
             {showDropdown && (
@@ -38,7 +32,6 @@ const Card = ({card, handleDeleteTask}) => {
             )}
           </div>
         </div>
-        <div className={cardStyles.card_title}>{card?.cardTitle}</div>
         <div className={cardStyles.card_footer}>
           {card?.createdAt && (
             <p>

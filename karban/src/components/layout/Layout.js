@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./Layout.module.css";
 // import Details from "../details/Details";
 import Navbar from "../navbar/Navbar";
@@ -7,95 +7,23 @@ import Editable from "../editable/Editable";
 
 import { Outlet } from "react-router-dom";
 
-import {useDispatch, useSelector} from 'react-redux'
-import {addList, deleteList} from '../../redux/listsSlice'
+import { useDispatch, useSelector } from "react-redux";
+import { addList, deleteList } from "../../redux/listsSlice";
 
 import { v4 as uuid } from "uuid";
 
 function Layout() {
-  const dispatch=useDispatch()
-  const listArr=useSelector(state=>state.lists.value)
+  const dispatch = useDispatch();
+  const listArr = useSelector((state) => state.lists.value);
 
   const handleAddList = (title) => {
-    dispatch(addList({id: uuid(), title: title, cards: []}))
+    dispatch(addList({ id: uuid(), title: title, cards: [] }));
   };
 
-  const handleDeleteList=(listID)=>{
+  const handleDeleteList = (listID) => {
     // console.log(listID)
-    dispatch(deleteList(listID))
-  }
-
-  // // const [boards, setBoard] = useState([
-  // //   {
-  // //     id: uuid(),
-  // //     title: "Tasks",
-  // //     cards: [
-  // //       {
-  // //         id: uuid(),
-  // //         title: "Card 1",
-  // //         tasks: [],
-  // //         labels: [
-  // //           {
-  // //             text: "FrontEnd",
-  // //             color: "green",
-  // //           },
-  // //         ],
-  // //         desc: "Hello everyone",
-  // //         date: "",
-  // //       },
-  // //       {
-  // //         id: uuid(),
-  // //         title: "Card 2",
-  // //         tasks: [],
-  // //         labels: [
-  // //           {
-  // //             text: "urgent",
-  // //             color: "red",
-  // //           },
-  // //         ],
-  // //         desc: "Do it fast",
-  // //         date: "",
-  // //       },
-  // //     ],
-  // //   },
-  // // ]);
-
-  // const addCard = (title, bid) => {
-  //   const card = {
-  //     id: uuid(),
-  //     title,
-  //     lables: [],
-  //     tasks: [],
-  //     desc: "",
-  //     date: "",
-  //   };
-  //   const index = boards.findIndex((item) => item.id === bid);
-  //   if (index < 0) return;
-
-  //   const tempBoards = [...boards];
-  //   tempBoards[index].cards.push(card);
-  //   setBoard(tempBoards);
-  // };
-
-  // const deleteCard = (bid, cid) => {
-  //   const bIndex = boards.findIndex((item) => item.id === bid);
-  //   if (bIndex < 0) return;
-
-  //   const cIndex = boards[bIndex].cards.findIndex((item) => item.id === cid);
-  //   if (cIndex < 0) return;
-
-  //   const tempBoards = [...boards];
-  //   tempBoards[bIndex].cards.splice(cIndex, 1);
-  //   setBoard(tempBoards);
-  // };
-
-  // const removeBoard = (bid) => {
-  //   const tempBoards = boards.filter((item) => {
-  //     return item.id !== bid;
-  //   });
-  //   setBoard(tempBoards);
-  // };
-
+    dispatch(deleteList(listID));
+  };
 
   return (
     <>
@@ -105,7 +33,11 @@ function Layout() {
           <div className={style.outer_board}>
             <div className={style.inner_board}>
               {listArr?.map((item) => (
-                <Board key={item.listID} board={item} listDelete={handleDeleteList} />
+                <Board
+                  key={item.listID}
+                  board={item}
+                  listDelete={handleDeleteList}
+                />
               ))}
               <Editable
                 text="Add another list"
