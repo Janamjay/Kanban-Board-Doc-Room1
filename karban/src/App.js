@@ -1,9 +1,6 @@
 import "./App.css";
-
 import Layout from "./components/layout/Layout";
-// import ToDo from './components/toDo/toDo';
 import Details from "./components/details/Details";
-
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -14,8 +11,6 @@ function App() {
           <Route path={":cardId"} element={<Details />} />
         </Route>
       </Routes>
-
-      {/* <ToDo /> */}
     </div>
   );
 }
