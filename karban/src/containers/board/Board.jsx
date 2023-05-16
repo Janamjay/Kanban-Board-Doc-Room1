@@ -4,10 +4,8 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import Card from "../card/Card";
 import Editable from "../../components/editable/Editable";
 import Dropdown from "../../components/dropdown/Dropdown";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, deleteTask } from "../../redux/tasksSlice";
-
 import { v4 as uuid } from "uuid";
 
 const Board = (props) => {
