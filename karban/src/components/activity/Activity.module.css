@@ -71,15 +71,15 @@
   z-index: 1;
 }
 
-.commentBtn > button {
+.addComment {
   padding-left: 2%;
-  width: 450px;
+  width: 26.5rem;
   height: 40px;
-  background-color: white;
+  background-color: #091E420F;
   color: #172b4d;
   border: none;
   text-align: left;
-
+  margin-left: 1rem;
   border-radius: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   position: relative;
@@ -90,12 +90,12 @@
 .textEditor {
   display: inline-block;
   /* border: 1px solid red; */
-  width: 400px;
+  width: 480px;
   height: 50px;
 }
 
 .btns {
-  margin-top: 3px;
+  margin-top: 11px;
 }
 .save {
   background-color: #0984e3;
@@ -136,4 +136,11 @@
 
 .textEditor input:focus {
   outline-color: lightskyblue;
+}
+
+.savedInput {
+  cursor: pointer;
+  margin-left: 1rem;
+  color: grey;
+  font-size: 20px;
 }
