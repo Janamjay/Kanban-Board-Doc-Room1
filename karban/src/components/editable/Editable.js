@@ -30,12 +30,6 @@ const Editable = (props) => {
         <form
           className={`${edit.input_edit} ${props.editClass || ""}`}
           onSubmit={(e)=>handleSubmit(e)}
-          // onSubmit={(e) => {
-          //   e.preventDefault();
-          //   if (props.onSubmit) props.onSubmit(inputValue);
-          //   setShowEdit(false);
-          //   setInputValue("");
-          // }}
         >
           <input
             autoFocus
