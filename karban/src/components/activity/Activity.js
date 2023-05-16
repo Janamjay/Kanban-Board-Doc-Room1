@@ -1,23 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import style from "./Activity.module.css";
 import Icons from "../icons/Icons";
 import { RxActivityLog } from "react-icons/rx";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function Activity() {
   const [details, setShowDetails] = useState(false);
-  const [comment, setComment] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [input, setInput] = useState("");
+  const [savedInput, setSavedInput] = useState("");
+  const inputRef = useRef();
+
   function handleButton() {
     setShowDetails(!details);
   }
 
-  function handleComment() {
-    setComment(true);
+  function handleEdit() {
+    setEditing(true);
+    setInput(savedInput);
   }
 
-  function handleInput() {}
-  function handleClick() {
-    setComment(false);
+  function handleSave() {
+    setSavedInput(input);
+    setEditing(false);
   }
+
+  function handleCancel() {
+    setInput(savedInput);
+    setEditing(false);
+  }
+
   return (
     <>
       <div className={style.main}>
@@ -34,7 +47,6 @@ function Activity() {
       <div className={style.detailsDiv}>
         {details ? (
           <>
-            {/* <button className={style.hides}>HIIIIIIIIIIII</button> */}
             <div className={style.mainActivityBox}>
               <span className={style.activityImage}>
                 <img
@@ -66,24 +78,40 @@ function Activity() {
           />
         </span>
         <span className={style.commentBtn}>
-          {comment ? (
+          {editing ? (
             <>
               <span className={style.textEditor}>
-                <input type="text" onChange={handleInput} />
+                <ReactQuill
+                  style={{ marginTop: "1rem", backgroundColor: "white" }}
+                  value={input}
+                  onChange={setInput}
+                />
                 <div className={style.btns}>
-                  <span>
-                    <button className={style.save}>Save</button>
-                  </span>
-                  <span>
-                    <button onClick={handleClick} className={style.cancel}>
-                      Cancel
-                    </button>
-                  </span>
+                  <button onClick={handleSave} className={style.save}>
+                    Save
+                  </button>
+                  <button onClick={handleCancel} className={style.cancel}>
+                    Cancel
+                  </button>
                 </div>
               </span>
             </>
           ) : (
-            <button onClick={handleComment}>Write a comment....</button>
+            <div>
+              <div
+                onClick={handleEdit}
+                className={style.savedInput}
+                dangerouslySetInnerHTML={{ __html: savedInput }}
+              />
+              {!savedInput && (
+                <button
+                  className={style.addComment}
+                  onClick={() => setEditing(true)}
+                >
+                  Write a comment....
+                </button>
+              )}
+            </div>
           )}
         </span>
       </div>

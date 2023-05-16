@@ -75,7 +75,7 @@
   z-index: 1;
 }
 
-.commentBtn > button {
+.addComment{
   padding-left: 2%;
   width: 450px;
   height: 40px;
