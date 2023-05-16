@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import style from "./Home.module.css";
 import BoardBar from "../containers/navbars/BoardBar";
 import Board from "../containers/board/Board";
@@ -28,8 +28,9 @@ function Home() {
           <BoardBar />
           <div className={style.outer_board}>
             <div className={style.inner_board}>
-              {listArr?.map((item) => (
+              {listArr?.map((item,index) => (
                 <Board
+                  index={index}
                   key={item.listID}
                   board={item}
                   listDelete={handleDeleteList}
