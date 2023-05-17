@@ -5,13 +5,35 @@ import Card from "../card/Card";
 import Editable from "../../components/editable/Editable";
 import Dropdown from "../../components/dropdown/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask, deleteTask } from "../../redux/tasksSlice";
+import { addTask, deleteTask} from "../../redux/tasksSlice";
+import { updateTitle } from "../../redux/listsSlice";
 import { v4 as uuid } from "uuid";
 
 const Board = (props) => {
   const dispatch = useDispatch();
   const allTasks = useSelector((state) => state.tasks.value);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [newListTitle, setNewListTitle] = useState(props.board?.listTitle);
+  const listTitle = useSelector((state) => state.lists.value.listTitle);
+
+  function handleEditTitle() {
+    // console.log("handleEditTitle");
+    setEditMode(true);
+  }
+
+  function handleSaveTitle() {
+    dispatch(updateTitle({
+      listID:props.board.listID,
+      listTitle : newListTitle,
+      index:props.index
+    }))
+    setEditMode(false);
+  }
+  function handleChangeTitle(event) {
+    // console.log("handleChangeTitle", event.target.value);
+    setNewListTitle(event.target.value);
+  }
 
   function handleClick() {
     setShowDropdown(!showDropdown);
@@ -35,11 +57,27 @@ const Board = (props) => {
   function handleDeleteTask(cardID) {
     dispatch(deleteTask(cardID));
   }
-
+  // console.log("listTitle", listTitle);
+  // console.log("allTask", allTasks);
+  // console.log("props.board", props.board);
   return (
     <div className={board.main_board}>
       <div className={board.board_top}>
-        <p className={board.board_top_tittle}>{props.board?.listTitle}</p>
+        {editMode ? (
+            <input
+              className={board.input}
+              autoFocus
+              type="text"
+              defaultValue={listTitle}
+              value={newListTitle}
+              onChange={handleChangeTitle}
+              onBlur={handleSaveTitle}
+            />
+        ) : (
+          <p className={board.board_top_tittle} onClick={handleEditTitle}>
+            {props.board?.listTitle}
+          </p>
+        )}
         <div className={board.top_more}>
           <FiMoreHorizontal onClick={handleClick} />
           {showDropdown && (

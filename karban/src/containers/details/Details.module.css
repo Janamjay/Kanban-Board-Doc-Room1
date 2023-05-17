@@ -1,5 +1,9 @@
+.main{
+  background-color: rgb(201, 198, 198);
+}
+
 .windows {
-  min-height: 600px;
+  min-height: 100vh;
   width: 600px;
   margin-left: 20%;
   border-radius: 8px;

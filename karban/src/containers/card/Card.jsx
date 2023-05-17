@@ -4,9 +4,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { FiCheckSquare } from "react-icons/fi";
 import Dropdown from "../../components/dropdown/Dropdown";
 import cardStyles from "./card.module.css";
-
 import { Link } from "react-router-dom";
-
 
 const Card = ({card, handleDeleteTask}) => {
 
@@ -17,7 +15,7 @@ const Card = ({card, handleDeleteTask}) => {
 
   
   return (
-    <Link style={{textDecoration:"none"}} to={card.cardID}>
+    <Link style={{textDecoration:"none"}} to={`/${card.cardID}`}>
       <div className={cardStyles.card_main}>
         <div className={cardStyles.card_top}>
           <div className={cardStyles.card_title}>{card?.cardTitle}</div>
