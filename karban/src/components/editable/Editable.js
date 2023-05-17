@@ -58,8 +58,7 @@ const Editable = (props) => {
             {props.text || "Add task"}
           </p>
         </button>
-        // <p onClick={()=> setShowEdit(true)}>{props.text || "Add task"}</p>
-      )}
+              )}
     </div>
   );
 };

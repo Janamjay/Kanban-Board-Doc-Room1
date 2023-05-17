@@ -8,9 +8,9 @@ import {
   addTask,
   deleteTask,
   moveCardToAnotherList,
- 
+  reorderCards,
 } from "../../redux/tasksSlice";
-import {  reorderCards,updateTitle } from "../../redux/listsSlice";
+import {  updateTitle } from "../../redux/listsSlice";
 import { v4 as uuid } from "uuid";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import boardStyles from "./board.module.css";
