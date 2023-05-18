@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const listsInitialState = {
   value: [],
@@ -29,15 +29,19 @@ export const listsSlice = createSlice({
       }
     },
     reorderCards: (state, action) => {
-      console.log(action.payload)
-      // console.log(state.value)
+      // console.log(action.payload)
+      const curState=current(state)
+      console.log(curState)
 
       const { listID, startIndex, endIndex } = action.payload;
-      const [requiredList]= state.value.filter((list) => list.listID === listID);
-      // console.log(requiredList)
-      const requiredListIndex= state.value.findIndex((list) => list.listID === listID);
+      let requiredList= curState.value.find((list) => list.listID === listID);
+      console.log(requiredList.cards)
+      const requiredListIndex= curState.value.findIndex((list) => list.listID === listID);
+      console.log(requiredListIndex)
+
 
       const temp=requiredList.cards[startIndex]
+      console.log(temp, "temp")
       requiredList.cards[startIndex]=requiredList.cards[endIndex]
       requiredList.cards[endIndex]=temp
 
