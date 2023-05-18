@@ -36,9 +36,34 @@ export const tasksSlice = createSlice({
           state.value.splice(sourceListIndex, 1, sourceList)
         }
       }
+    },
+    reorderCards: (state, action) => {
+      console.log(action.payload)
+      const curState=current(state)
+      console.log(curState)
+
+      const { targetListID, startIndex, endIndex } = action.payload;
+      const requiredList= current(state).value.find((list) => list.listID === targetListID);
+      console.log(requiredList)
+      const requiredListIndex= state.value.findIndex((list) => list.listID === targetListID);
+      // console.log(requiredListIndex)
+
+
+      const temp=requiredList.cards[startIndex]
+      // const temp=requiredList.cards.splice(startIndex,1)
+
+      // console.log(temp, "temp")
+      requiredList.cards[startIndex]=requiredList.cards[endIndex]
+      // temp.splice(endIndex, 1, )
+      requiredList.cards[endIndex]=temp
+
+      // const [removedCard] = cards.splice(startIndex, 1);
+      // cards.splice(endIndex, 0, removedCard);
+
+      state.value.splice(requiredListIndex, 1, requiredList)
     }
   },
 });
 
-export const { addTask, deleteTask, moveCardToAnotherList } = tasksSlice.actions;
+export const { addTask, deleteTask, moveCardToAnotherList, reorderCards } = tasksSlice.actions;
 export default tasksSlice.reducer;

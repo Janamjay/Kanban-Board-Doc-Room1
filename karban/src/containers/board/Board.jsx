@@ -9,7 +9,7 @@ import {
   deleteTask,
   moveCardToAnotherList
 } from "../../redux/tasksSlice";
-import { updateTitle, reorderCards } from "../../redux/listsSlice";
+import { updateTitle, addTaskToList, reorderCards } from "../../redux/listsSlice";
 import { v4 as uuid } from "uuid";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import boardStyles from "./board.module.css";
@@ -17,6 +17,8 @@ import boardStyles from "./board.module.css";
 const Board = (props) => {
   const dispatch = useDispatch();
   const allTasks = useSelector((state) => state.tasks.value);
+  const allLists = useSelector((state) => state.lists.value);
+
   const [showDropdown, setShowDropdown] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [newListTitle, setNewListTitle] = useState(props.board?.listTitle);
@@ -58,6 +60,7 @@ const Board = (props) => {
       createdAt: `${formatDate} ${formatMonth}`,
     };
     dispatch(addTask(newCard));
+    dispatch(addTaskToList(newCard))
   }
 
   function handleDeleteTask(cardID) {
@@ -69,12 +72,19 @@ const Board = (props) => {
     if (!destination) {
       return;
     }
-  
+    
+
+      
+      
+
     const sourceListID = source.droppableId; // Define sourceListID here
     const destinationListID = destination.droppableId;
     const cardID = result.draggableId;
     const startIndex = source.index;
     const endIndex = destination.index;
+
+    
+    
   
     if (destinationListID !== sourceListID) {
       dispatch(
@@ -85,11 +95,14 @@ const Board = (props) => {
         })
       );
     } else if (startIndex !== endIndex) {
+      
       dispatch(
         reorderCards({
-          listID: props.board.listID,
+          targetListID: props.board.listID,
           startIndex: startIndex,
           endIndex: endIndex
+          // requiredList: requiredList,
+          // requiredListIndex: requiredListIndex
         })
       );
     }
@@ -137,11 +150,11 @@ const Board = (props) => {
             <ul className="cards"
               {...provided.droppableProps}
               ref={provided.innerRef}
+              style={{listStyle: "none"}}
             >
               <div className={`${boardStyles.board_cards} ${boardStyles.custom_scroll}`}>
-              {allTasks
-                ?.filter((task) => task.listID === props.board.listID)
-                .map((item, index) => (
+              {(allLists
+                ?.filter((list) => list.listID === props.board.listID))[0].cards.map((item, index) => (
                   <Draggable key={item.cardID} draggableId={item.cardID} index={index}>
                   {(provided) => <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}><Card
                     
