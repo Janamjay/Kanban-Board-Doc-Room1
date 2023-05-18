@@ -7,12 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addTask,
   deleteTask,
-  moveCardToAnotherList,
-  reorderCards,
+  moveCardToAnotherList
 } from "../../redux/tasksSlice";
-import { updateTitle } from "../../redux/listsSlice";
+import { updateTitle, reorderCards } from "../../redux/listsSlice";
 import { v4 as uuid } from "uuid";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import boardStyles from "./board.module.css";
 
 const Board = (props) => {
@@ -65,7 +64,7 @@ const Board = (props) => {
     dispatch(deleteTask(cardID));
   }
 
-  function handleDragEnd(result) {
+  function handleOnDragEnd(result) {
     const { destination, source } = result;
     if (!destination) {
       return;
@@ -80,24 +79,24 @@ const Board = (props) => {
     if (destinationListID !== sourceListID) {
       dispatch(
         moveCardToAnotherList({
-          cardID,
-          sourceListID,
-          destinationListID,
+          cardID: cardID,
+          sourceListID: sourceListID,
+          destinationListID: destinationListID
         })
       );
     } else if (startIndex !== endIndex) {
       dispatch(
         reorderCards({
-          listID: sourceListID,
-          startIndex,
-          endIndex,
+          listID: props.board.listID,
+          startIndex: startIndex,
+          endIndex: endIndex
         })
       );
     }
   }
 
   return (
-    <DragDropContext onDragEnd={handleDragEnd}>
+    <DragDropContext onDragEnd={handleOnDragEnd}>
       <div className={boardStyles.main_board}>
         <div className={boardStyles.board_top}>
           {editMode ? (
@@ -133,22 +132,24 @@ const Board = (props) => {
             )}
           </div>
         </div>
-        <Droppable droppableId="card">
+        <Droppable droppableId="cards">
           {(provided) => (
-            <div
-              className={`${boardStyles.board_cards} ${boardStyles.custom_scroll}`}
+            <ul className="cards"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
+              <div className={`${boardStyles.board_cards} ${boardStyles.custom_scroll}`}>
               {allTasks
                 ?.filter((task) => task.listID === props.board.listID)
                 .map((item, index) => (
-                  <Card
-                    key={item.cardID}
+                  <Draggable key={item.cardID} draggableId={item.cardID} index={index}>
+                  {(provided) => <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}><Card
+                    
                     card={item}
                     index={index}
                     handleDeleteTask={handleDeleteTask}
-                  />
+                  /></li>}
+                  </Draggable>
                 ))}
               {provided.placeholder}
               <Editable
@@ -156,7 +157,8 @@ const Board = (props) => {
                 placeholder="Enter a title for this card...."
                 handleAddTask={handleAddTask}
               />
-            </div>
+              </div>
+            </ul>
           )}
         </Droppable>
       </div>

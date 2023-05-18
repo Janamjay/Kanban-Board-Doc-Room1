@@ -28,8 +28,26 @@ export const listsSlice = createSlice({
         state.value[index].listTitle = listTitle;
       }
     },
+    reorderCards: (state, action) => {
+      console.log(action.payload)
+      // console.log(state.value)
+
+      const { listID, startIndex, endIndex } = action.payload;
+      const [requiredList]= state.value.filter((list) => list.listID === listID);
+      // console.log(requiredList)
+      const requiredListIndex= state.value.findIndex((list) => list.listID === listID);
+
+      const temp=requiredList.cards[startIndex]
+      requiredList.cards[startIndex]=requiredList.cards[endIndex]
+      requiredList.cards[endIndex]=temp
+
+      // const [removedCard] = cards.splice(startIndex, 1);
+      // cards.splice(endIndex, 0, removedCard);
+
+      state.value.splice(requiredListIndex, 1, requiredList)
+    }
   },
 });
 
-export const { addList, deleteList, updateTitle } = listsSlice.actions;
+export const { addList, deleteList, updateTitle, reorderCards } = listsSlice.actions;
 export default listsSlice.reducer;

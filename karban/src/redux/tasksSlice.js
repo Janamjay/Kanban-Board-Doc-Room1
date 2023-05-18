@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const tasksInitialState = {
   value: [],
@@ -10,6 +10,8 @@ export const tasksSlice = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.value.push(action.payload);
+      // console.log(state.value.length)
+      // console.log(current(state))
     },
     deleteTask: (state, action) => {
       state.value = state.value.filter(
@@ -25,23 +27,18 @@ export const tasksSlice = createSlice({
 
         if (sourceListID && sourceListID !== destinationListID) {
           const sourceList = state.value.filter((task) => task.listID === sourceListID);
+          const sourceListIndex = state.value.findIndex((task) => task.listID === sourceListID);
           const sourceCardIndex = sourceList.findIndex((task) => task.cardID === cardID);
 
           if (sourceCardIndex !== -1) {
             sourceList.splice(sourceCardIndex, 1);
           }
+          state.value.splice(sourceListIndex, 1, sourceList)
         }
       }
-    },
-    reorderCards: (state, action) => {
-      const { listID, startIndex, endIndex } = action.payload;
-      const cards = state.value.filter((task) => task.listID === listID);
-
-      const [removedCard] = cards.splice(startIndex, 1);
-      cards.splice(endIndex, 0, removedCard);
-    },
+    }
   },
 });
 
-export const { addTask, deleteTask, moveCardToAnotherList, reorderCards } = tasksSlice.actions;
+export const { addTask, deleteTask, moveCardToAnotherList } = tasksSlice.actions;
 export default tasksSlice.reducer;

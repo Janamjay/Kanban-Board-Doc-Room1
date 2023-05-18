@@ -16,13 +16,13 @@ const Card = ({ card, handleDeleteTask, index }) => {
   }
 
   return (
-    <Draggable draggableId={card.cardID} index={index}>
-      {(provided) => (
-        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+    // <Draggable draggableId={card.cardID} index={index}>
+      // {(provided) => (
+        // <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <Link style={{ textDecoration: "none" }} to={`/${card.cardID}`}>
-            <Droppable droppableId="card">
-              {(provided) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
+            {/* <Droppable droppableId="card"> */}
+              {/* {(provided) => ( */}
+                {/* <div {...provided.droppableProps} ref={provided.innerRef}> */}
                   <div className={cardStyles.card_main}>
                     <div className={cardStyles.card_top}>
                       <div className={cardStyles.card_title}>{card?.cardTitle}</div>
@@ -50,14 +50,14 @@ const Card = ({ card, handleDeleteTask, index }) => {
                       </p>
                     </div>
                   </div>
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
+                  {/* {provided.placeholder} */}
+                {/* </div> */}
+              {/* )} */}
+            {/* </Droppable> */}
           </Link>
-        </div>
-      )}
-    </Draggable>
+        // </div>
+    //   )}
+    // </Draggable>
   );
 };
 
